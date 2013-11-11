@@ -30,7 +30,7 @@ namespace FileLock.FileSys
                 using (var stream = File.OpenRead(lockFilePath))
                 {
                     var obj = JsonSerializer.ReadObject(stream);
-                    return (FileLockContent) obj;
+                    return (FileLockContent)obj;
                 }
             }
             catch (FileNotFoundException)
@@ -61,7 +61,14 @@ namespace FileLock.FileSys
 
         public static void DeleteLock(string lockFilePath)
         {
-            File.Delete(lockFilePath);
+            try
+            {
+                File.Delete(lockFilePath);
+            }
+            catch (Exception)
+            {
+                
+            }
         }
     }
 }

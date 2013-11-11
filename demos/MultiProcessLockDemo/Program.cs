@@ -10,7 +10,7 @@ namespace MultiProcessLockDemo
     {
         static void Main(string[] args)
         {
-            var processCount = 20;
+            var processCount = 50;
             Console.Write("Starting {0} processes - testing lock contention", processCount);
             var processes = new List<Process>();
             for (var i = 0; i <= processCount; i++)
