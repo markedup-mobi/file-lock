@@ -24,10 +24,16 @@ namespace FileLock
             {
                 var lockContent = LockIO.ReadLock(LockFilePath);
 
+                //Someone else owns the lock
+                if (lockContent.GetType() == typeof(OtherProcessOwnsFileLockContent))
+                {
+                    return false;
+                }
+
+                //the file no longer exists
                 if (lockContent.GetType() == typeof(MissingFileLockContent))
                 {
-                    AcquireLock();
-                    return true;
+                    return AcquireLock();
                 }
 
 
@@ -36,8 +42,7 @@ namespace FileLock
                 //This lock belongs to this process - we can reacquire the lock
                 if (lockContent.PID == Process.GetCurrentProcess().Id)
                 {
-                    AcquireLock();
-                    return true;
+                    return AcquireLock();
                 }
 
                 //The lock has not timed out - we can't acquire it
@@ -45,15 +50,14 @@ namespace FileLock
             }
 
             //Acquire the lock
-            AcquireLock();
-            return true;
+            return AcquireLock();
         }
 
-        
+
 
         public bool ReleaseLock()
         {
-            if(LockIO.LockExists(LockFilePath))
+            if (LockIO.LockExists(LockFilePath))
                 LockIO.DeleteLock(LockFilePath);
             return true;
         }
@@ -71,9 +75,9 @@ namespace FileLock
             };
         }
 
-        private void AcquireLock()
+        private bool AcquireLock()
         {
-            LockIO.WriteLock(LockFilePath, CreateLockContent());
+            return LockIO.WriteLock(LockFilePath, CreateLockContent());
         }
 
         #endregion

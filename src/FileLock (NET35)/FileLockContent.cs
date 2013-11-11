@@ -32,4 +32,8 @@ namespace FileLock
     public class MissingFileLockContent : FileLockContent
     {
     }
+
+    public class OtherProcessOwnsFileLockContent : FileLockContent
+    {
+    }
 }

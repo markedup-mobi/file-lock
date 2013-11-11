@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Runtime.Serialization.Json;
 
 namespace FileLock.FileSys
@@ -24,18 +25,37 @@ namespace FileLock.FileSys
 
         public static FileLockContent ReadLock(string lockFilePath)
         {
-            using (var stream = File.OpenRead(lockFilePath))
+            try
             {
-                var obj = JsonSerializer.ReadObject(stream);
-                return (FileLockContent)obj;
+                using (var stream = File.OpenRead(lockFilePath))
+                {
+                    var obj = JsonSerializer.ReadObject(stream);
+                    return (FileLockContent) obj;
+                }
+            }
+            catch (FileNotFoundException)
+            {
+                return new MissingFileLockContent();
+            }
+            catch (IOException)
+            {
+                return new OtherProcessOwnsFileLockContent();
             }
         }
 
-        public static void WriteLock(string lockFilePath, FileLockContent lockContent)
+        public static bool WriteLock(string lockFilePath, FileLockContent lockContent)
         {
-            using (var stream = File.Create(lockFilePath))
+            try
             {
-                JsonSerializer.WriteObject(stream, lockContent);
+                using (var stream = File.Create(lockFilePath))
+                {
+                    JsonSerializer.WriteObject(stream, lockContent);
+                }
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
             }
         }
 
