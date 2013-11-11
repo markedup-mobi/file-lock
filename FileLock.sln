@@ -5,6 +5,12 @@ VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileLock (NET35)", "src\FileLock (NET35)\FileLock (NET35).csproj", "{E1A511E9-B595-495A-A495-12FB8D95755F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MultiProcessLockDemo", "demos\MultiProcessLockDemo\MultiProcessLockDemo.csproj", "{33E7AE8A-9DA5-414F-A660-27F3F5088C5C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Demos", "Demos", "{B0A45E6D-5066-456C-A715-15A1C453CC5A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SingleProcessLockDemo", "demos\SingleProcessLockDemo\SingleProcessLockDemo.csproj", "{F9ADC5B1-F26A-4093-AD81-B0BC0F8DB658}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,8 +21,20 @@ Global
 		{E1A511E9-B595-495A-A495-12FB8D95755F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E1A511E9-B595-495A-A495-12FB8D95755F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E1A511E9-B595-495A-A495-12FB8D95755F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{33E7AE8A-9DA5-414F-A660-27F3F5088C5C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{33E7AE8A-9DA5-414F-A660-27F3F5088C5C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{33E7AE8A-9DA5-414F-A660-27F3F5088C5C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{33E7AE8A-9DA5-414F-A660-27F3F5088C5C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F9ADC5B1-F26A-4093-AD81-B0BC0F8DB658}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F9ADC5B1-F26A-4093-AD81-B0BC0F8DB658}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F9ADC5B1-F26A-4093-AD81-B0BC0F8DB658}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F9ADC5B1-F26A-4093-AD81-B0BC0F8DB658}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{33E7AE8A-9DA5-414F-A660-27F3F5088C5C} = {B0A45E6D-5066-456C-A715-15A1C453CC5A}
+		{F9ADC5B1-F26A-4093-AD81-B0BC0F8DB658} = {B0A45E6D-5066-456C-A715-15A1C453CC5A}
 	EndGlobalSection
 EndGlobal

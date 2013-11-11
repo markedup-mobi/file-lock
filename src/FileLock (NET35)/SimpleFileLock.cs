@@ -4,9 +4,9 @@ using FileLock.FileSys;
 
 namespace FileLock
 {
-    public class FileLock : IFileLock
+    public class SimpleFileLock : IFileLock
     {
-        protected FileLock(string lockName, TimeSpan lockTimeout)
+        protected SimpleFileLock(string lockName, TimeSpan lockTimeout)
         {
             LockName = lockName;
             LockTimeout = lockTimeout;
@@ -71,17 +71,21 @@ namespace FileLock
             };
         }
 
-        public FileLock Create(string lockName, TimeSpan lockTimeout)
+        private void AcquireLock()
+        {
+            LockIO.WriteLock(LockFilePath, CreateLockContent());
+        }
+
+        #endregion
+
+        #region Create methods
+
+        public static SimpleFileLock Create(string lockName, TimeSpan lockTimeout)
         {
             if (string.IsNullOrEmpty(lockName))
                 throw new ArgumentNullException("lockName", "lockName cannot be null or emtpy.");
 
-            return new FileLock(lockName, lockTimeout) { LockFilePath = LockIO.GetFilePath(lockName) };
-        }
-
-        private void AcquireLock()
-        {
-            LockIO.WriteLock(LockFilePath, CreateLockContent());
+            return new SimpleFileLock(lockName, lockTimeout) { LockFilePath = LockIO.GetFilePath(lockName) };
         }
 
         #endregion
