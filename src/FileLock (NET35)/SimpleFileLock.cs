@@ -50,6 +50,7 @@ namespace FileLock
             }
 
             //Acquire the lock
+            
             return AcquireLock();
         }
 
@@ -57,7 +58,8 @@ namespace FileLock
 
         public bool ReleaseLock()
         {
-            if (LockIO.LockExists(LockFilePath))
+            //Need to own the lock in order to release it (and we can reacquire the lock inside the current process)
+            if (LockIO.LockExists(LockFilePath) && TryAcquireLock())
                 LockIO.DeleteLock(LockFilePath);
             return true;
         }
