@@ -30,7 +30,7 @@ namespace FileLock.FileSys
                 using (var stream = File.OpenRead(lockFilePath))
                 {
                     var obj = JsonSerializer.ReadObject(stream);
-                    return (FileLockContent)obj;
+                    return (FileLockContent) obj ?? new MissingFileLockContent();
                 }
             }
             catch (FileNotFoundException)
@@ -40,6 +40,10 @@ namespace FileLock.FileSys
             catch (IOException)
             {
                 return new OtherProcessOwnsFileLockContent();
+            }
+            catch (Exception) //We have no idea what went wrong - reacquire this lock
+            {
+                return new MissingFileLockContent();
             }
         }
 
