@@ -10,7 +10,7 @@ open Fake.FileUtils
 // Information about the project for Nuget and Assembly info files
 //--------------------------------------------------------------------------------
 
-let product = "file-lock"
+let product = "FileLock"
 let authors = [ "MarkedUp" ]
 let copyright = "Copyright © MarkedUp 2012-2014"
 let company = "MarkedUp, Inc"
@@ -71,7 +71,7 @@ Target "CopyOutput" (fun _ ->
         let src = "src" @@ project @@ @"bin\release\"
         let dst = binDir @@ project
         CopyDir dst src allFiles
-    [ "file-lock"]
+    [ "FileLock"]
     |> List.iter copyOutput
 )
 

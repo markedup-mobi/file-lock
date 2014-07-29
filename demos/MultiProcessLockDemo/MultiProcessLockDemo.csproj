@@ -44,10 +44,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\src\FileLock %28NET35%29\FileLock %28NET35%29.csproj">
-      <Project>{e1a511e9-b595-495a-a495-12fb8d95755f}</Project>
-      <Name>FileLock %28NET35%29</Name>
-    </ProjectReference>
     <ProjectReference Include="..\SingleProcessLockDemo\SingleProcessLockDemo.csproj">
       <Project>{f9adc5b1-f26a-4093-ad81-b0bc0f8db658}</Project>
       <Name>SingleProcessLockDemo</Name>
