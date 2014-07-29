@@ -5,7 +5,7 @@ A simple file-locking implementation in C#.
 
 ## How File Locks Work ##
 
-Take from "[Easy Mode: Synchronizing Multiple Processes with File Locks](http://blog.markedup.com/2014/07/easy-mode-synchronizing-multiple-processes-with-file-locks/ "Easy Mode: Synchronizing Multiple Processes with File Locks")" on the [MarkedUp Analytics blog](http://blog.markedup.com/ "MarkedUp Analytics and In-app Marketing Blog").
+Taken from "[Easy Mode: Synchronizing Multiple Processes with File Locks](http://blog.markedup.com/2014/07/easy-mode-synchronizing-multiple-processes-with-file-locks/ "Easy Mode: Synchronizing Multiple Processes with File Locks")" on the [MarkedUp Analytics blog](http://blog.markedup.com/ "MarkedUp Analytics and In-app Marketing Blog").
 
 The concept of a file lock is simple and it’s fairly ubiquitous in the real-world – anyone who’s done a lot of work with Ruby (Gemfile.lock) or Linux has used a file lock at some point in time.
 
