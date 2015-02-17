@@ -40,7 +40,7 @@ Note: this **does not create the lock file itself**, it only gives you a referen
 
 To attempt to acquire the lock, use the `TryAcquireLock()` method:
 
-    if (fLock.TryAcquireLock())
+    if (fileLock.TryAcquireLock())
     {
     	//Lock acquired - do your work here
     }
