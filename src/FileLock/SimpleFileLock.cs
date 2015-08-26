@@ -40,7 +40,8 @@ namespace FileLock
                 var lockWriteTime = new DateTime(lockContent.Timestamp);
 
                 //This lock belongs to this process - we can reacquire the lock
-                if (lockContent.PID == Process.GetCurrentProcess().Id)
+                var currentProcess = Process.GetCurrentProcess();
+                if (lockContent.PID == currentProcess.Id && lockContent.MachineName == currentProcess.MachineName)
                 {
                     return AcquireLock();
                 }
@@ -69,11 +70,12 @@ namespace FileLock
         protected FileLockContent CreateLockContent()
         {
             var process = Process.GetCurrentProcess();
-            return new FileLockContent()
+            return new FileLockContent
             {
                 PID = process.Id,
-                Timestamp = DateTime.Now.Ticks,
-                ProcessName = process.ProcessName
+                ProcessName = process.ProcessName,
+                MachineName = process.MachineName,
+                Timestamp = DateTime.Now.Ticks
             };
         }
 

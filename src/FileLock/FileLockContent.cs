@@ -17,6 +17,12 @@ namespace FileLock
         public long PID { get; set; }
 
         /// <summary>
+        /// The hostname of the machine
+        /// </summary>
+        [DataMember]
+        public string MachineName { get; set; }
+
+        /// <summary>
         /// The timestamp (DateTime.Now.Ticks)
         /// </summary>
         [DataMember]
