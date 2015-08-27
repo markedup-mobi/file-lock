@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Diagnostics;
-using FileLock.FileSys;
 
 namespace FileLock
 {
@@ -41,7 +40,7 @@ namespace FileLock
 
                 //This lock belongs to this process - we can reacquire the lock
                 var currentProcess = Process.GetCurrentProcess();
-                if (lockContent.PID == currentProcess.Id && lockContent.MachineName == currentProcess.MachineName)
+                if (lockContent.PID == currentProcess.Id && lockContent.MachineName == Environment.MachineName)
                 {
                     return AcquireLock();
                 }
@@ -74,7 +73,7 @@ namespace FileLock
             {
                 PID = process.Id,
                 ProcessName = process.ProcessName,
-                MachineName = process.MachineName,
+                MachineName = Environment.MachineName,
                 Timestamp = DateTime.Now.Ticks
             };
         }
