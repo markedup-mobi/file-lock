@@ -34,8 +34,8 @@ Install the [FileLock NuGet package](https://www.nuget.org/packages/FileLock/ "M
 Once that's done, you create a reference to a file lock via the following code snippet:
 
     //creates a file lock with a 2-minute timeout
-    var fileLock = new SimpleFileLock("path/to/lock/name.{extension}", TimeSpan.FromMinutes(2));
-
+    var fileLock = SimpleFileLock.Create("path/to/lock/name.{extension}", TimeSpan.FromMinutes(2));
+    
 Note: this **does not create the lock file itself**, it only gives you a reference to it.
 
 To attempt to acquire the lock, use the `TryAcquireLock()` method:
