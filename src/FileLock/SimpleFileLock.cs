@@ -36,14 +36,13 @@ namespace FileLock
                     return AcquireLock();
                 }
 
-
-                var lockWriteTime = new DateTime(lockContent.Timestamp);
-
                 //This lock belongs to this process - we can reacquire the lock
                 if (lockContent.PID == Process.GetCurrentProcess().Id)
                 {
                     return AcquireLock();
                 }
+
+                var lockWriteTime = new DateTime(lockContent.Timestamp);
 
                 //The lock has not timed out - we can't acquire it
                 if (!(Math.Abs((DateTime.Now - lockWriteTime).TotalSeconds) > LockTimeout.TotalSeconds)) return false;
